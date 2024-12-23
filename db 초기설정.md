@@ -1,17 +1,17 @@
 1. mysql employee database
 
-2. mysql Site -> 3번 Installation(설치)
-   https://dev.mysql.com/doc/employee/en/employees-installation.html
-   Git 들어가서 test_db10.7
-   test_db107.tar.gz
-   다운받고
-   압축풀고
-   C:\Users\Metanet\Documents\test_db-1.0.7\test_db
+2. mysql Site -> 3번 Installation(설치)  
+   https://dev.mysql.com/doc/employee/en/employees-installation.html  
+   Git 들어가서 test_db10.7  
+   test_db107.tar.gz  
+   다운받고  
+   압축풀고  
+   C:\Users\Metanet\Documents\test_db-1.0.7\test_db  
 
 3. xampp 구동
 4. mysql workbench 연결
 	employees.sql 파일넣기
-5. 데이터베이스 생성
+5. 데이터베이스 생성  
    DROP DATABASE IF EXISTS employees; 컨트롤 엔터  
    CREATE DATABASE IF NOT EXISTS employees;  
    USE employees;  
