@@ -12,10 +12,10 @@
 4. mysql workbench 연결
 	employees.sql 파일넣기
 5. 데이터베이스 생성
-   DROP DATABASE IF EXISTS employees; 컨트롤 엔터
-   CREATE DATABASE IF NOT EXISTS employees;
-   USE employees;
-   알아서 하시고
+   DROP DATABASE IF EXISTS employees; 컨트롤 엔터  
+   CREATE DATABASE IF NOT EXISTS employees;  
+   USE employees;  
+   알아서 하시고  
 
 6. 테이블 데이터 삽입하기
    employee ,departments 먼저 삽입하기
