@@ -22,7 +22,8 @@
 7. 나머지 삽입하기
 8.phpmyadmin사이트에서 가져오기- 파일-employee 삽입하기(load_employees.dump)
 
-9.검증.
+9. 검증.
+```
 --한개씩
 SELECT COUNT(*) FROM departments WHERE 1;
 SELECT COUNT(*) FROM dept_emp WHERE 1;
@@ -42,7 +43,7 @@ SELECT
 FROM DUAL;
 
 USE employees; 
-
+```
 
 
 테이블 구조
