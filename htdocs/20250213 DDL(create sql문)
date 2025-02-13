@@ -1,0 +1,11 @@
+CREATE TABLE pray (
+    week INT AUTO_INCREMENT PRIMARY KEY,
+    title VARCHAR(255) NOT NULL
+);
+
+CREATE TABLE prayer (
+    No INT AUTO_INCREMENT PRIMARY KEY,
+    week INT NOT NULL,
+    question TEXT NOT NULL,
+    answer TEXT NOT NULL
+);
