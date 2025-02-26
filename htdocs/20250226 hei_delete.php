@@ -17,8 +17,10 @@ if (isset($_GET['week'])) {
 }
 ?>
 
-<form method="GET" action="delete.php">
+<form method="GET" action="hei_delete.php">
     <label for="week">삭제할 주차:</label>
     <input type="number" id="week" name="week" required>
     <input type="submit" value="삭제">
 </form>
+
+<button onclick="location.href='hei_list.php'">목록으로</button>
