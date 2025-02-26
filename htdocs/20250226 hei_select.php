@@ -23,3 +23,5 @@ if (isset($_GET['week'])) {
     <input type="number" id="week" name="week" required>
     <input type="submit" value="조회">
 </form>
+
+<button onclick="location.href='hei_list.php'">목록으로</button>
