@@ -16,7 +16,7 @@ if ($week == "") {
 }
 
 ?>
-<form method="get" action="list.php">
+<form method="get" action="hei_list.php">
     <input type="hidden" name="page" value="1" />
     <input type="hidden" name="count" value="<?php echo $count; ?>" />
     <label for="week">주차 검색:</label>
@@ -57,12 +57,12 @@ echo "page {$results['page']} of {$results['lastPage']}";
 // 페이지 네비게이션
 if ($now != 1) {
 ?>
-    <button onclick="location.replace('list.php?page=<?php echo $now-1; ?>&count=<?php echo $count; ?>&week=<?php echo $week; ?>')">Prev</button>
+    <button onclick="location.replace('hei_list.php?page=<?php echo $now-1; ?>&count=<?php echo $count; ?>&week=<?php echo $week; ?>')">Prev</button>
 <?php 
 }
 if ($results['lastPage'] != $now) {
 ?>
-    <button onclick="location.replace('list.php?page=<?php echo $now+1; ?>&count=<?php echo $count; ?>&week=<?php echo $week; ?>')">Next</button>
+    <button onclick="location.replace('hei_list.php?page=<?php echo $now+1; ?>&count=<?php echo $count; ?>&week=<?php echo $week; ?>')">Next</button>
 <?php
 }
 ?>
