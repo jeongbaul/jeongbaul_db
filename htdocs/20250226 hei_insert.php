@@ -23,7 +23,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 }
 ?>
 
-<form method="POST" action="insert.php">
+<form method="POST" action="hei_insert.php">
     <label for="week">주차:</label><br>
     <input type="number" id="week" name="week"><br><br>
     
@@ -35,3 +35,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     
     <input type="submit" value="삽입">
 </form>
+
+<button onclick="location.href='hei_list.php'">목록으로</button>
+
