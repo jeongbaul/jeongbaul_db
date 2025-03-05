@@ -7,4 +7,4 @@ $deleteConditions = ['emp_no' => $_GET['emp_no']];
 $deleteResult = delete('employees', $deleteConditions);
 echo $deleteResult ? "User deleted successfully\n" : "Failed to delete user\n";
 ?>
-<button onclick="location.replace('list.php')">목록으로</button>
+<button onclick="location.replace('list')">목록으로</button>

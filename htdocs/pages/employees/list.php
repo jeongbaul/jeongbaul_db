@@ -33,12 +33,12 @@ if($last_name == ""){
 foreach ($results['data'] as $result) {
 ?>
     <tr>
-        <td><a href="view.php?emp_no=<?php echo $result['emp_no']; ?>"><?php echo $result['emp_no']; ?></a></td>
+        <td><a href="view?emp_no=<?php echo $result['emp_no']; ?>"><?php echo $result['emp_no']; ?></a></td>
         <td><?php echo $result['first_name']; ?></td>
         <td><?php echo $result['last_name']; ?></td>
         <td>
-        <button onclick="location.replace('update.php?emp_no=<?php echo $result['emp_no']; ?>')">수정</button>
-        <button onclick="location.replace('delete.php?emp_no=<?php echo $result['emp_no']; ?>')">삭제</button>
+        <button onclick="location.replace('update?emp_no=<?php echo $result['emp_no']; ?>')">수정</button>
+        <button onclick="location.replace('delete?emp_no=<?php echo $result['emp_no']; ?>')">삭제</button>
         </td>
     </tr>
     <?php
@@ -50,13 +50,13 @@ echo "page {$results['page']} of {$results['lastPage']}";
 
     if($now != 1){
 ?>
-<button onclick="location.replace('list.php?page=<?php echo $now-1; ?>&count=<?php echo $count; ?>&last_name=<?php echo $last_name; ?>')">Prev</button>
+<button onclick="location.replace('list?page=<?php echo $now-1; ?>&count=<?php echo $count; ?>&last_name=<?php echo $last_name; ?>')">Prev</button>
 <?php 
     }
     if($results['lastPage'] != $now){
 ?>
-<button onclick="location.replace('list.php?page=<?php echo $now+1; ?>&count=<?php echo $count; ?>&last_name=<?php echo $last_name; ?>')">Next</button>
+<button onclick="location.replace('list?page=<?php echo $now+1; ?>&count=<?php echo $count; ?>&last_name=<?php echo $last_name; ?>')">Next</button>
 <?php
     }
 ?>
-<button onclick="location.replace('insert.php')">등록</button>
+<button onclick="location.replace('insert')">등록</button>

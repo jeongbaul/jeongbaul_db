@@ -18,6 +18,6 @@ $user = read('employees', ['emp_no' => $_GET['emp_no']], '', '1');
     BirthDate:<?php echo $user[0]['birth_date']; ?><br />
     Gender:<?php echo $user[0]['gender']; ?><br />
     HireDate:<?php echo $user[0]['hire_date']; ?><br />
-    <button onclick="location.replace('list.php')">목록으로</button>
+    <button onclick="location.replace('list')">목록으로</button>
 </body>
 </html>

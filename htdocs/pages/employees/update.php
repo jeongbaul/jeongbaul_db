@@ -32,7 +32,7 @@ $user = read('employees', ['emp_no' => $_GET['emp_no']], '', '1');
     HireDate:<input type="text" name="hire_date" value="<?php echo $user[0]['hire_date']; ?>" /><br />
     <input type="submit" value="수정하기" />
     <input type="reset" value="초기화" />
-    <input type="button" value="뒤로가기" onclick="location.replace('list.php')" />
+    <input type="button" value="뒤로가기" onclick="location.replace('list')" />
     </form>
 </body>
 </html>

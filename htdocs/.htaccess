@@ -1,0 +1,4 @@
+RewriteEngine On
+RewriteBase /
+RewriteRule ^([^/]+)/([^/]+)$ index.php?context1=$1&context2=$2 [L,QSA]
+RewriteRule ^([^/]+)/([^/]+)/([^/]+)$ index.php?context1=$1&context2=$2&action=$3 [L,QSA]
