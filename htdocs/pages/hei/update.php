@@ -31,7 +31,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 }
 ?>
 
-<form method="POST" action="hei_update.php">
+<form method="POST" action="/hei/update">
     <input type="hidden" name="week" value="<?php echo $week; ?>" />
     
     <label for="question">질문:</label><br>
@@ -42,5 +42,5 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     
     <input type="submit" value="수정">
 </form>
-<button onclick="location.href='hei_list.php'">목록으로</button>
+<button onclick="location.href='/hei/list'">목록으로</button>
 

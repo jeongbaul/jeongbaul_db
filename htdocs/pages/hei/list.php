@@ -16,7 +16,7 @@ if ($week == "") {
 }
 
 ?>
-<form method="get" action="hei_list.php">
+<form method="get" action="/hei/list">
     <input type="hidden" name="page" value="1" />
     <input type="hidden" name="count" value="<?php echo $count; ?>" />
     <label for="week">주차 검색:</label>
@@ -41,8 +41,8 @@ foreach ($results['data'] as $result) {
         <td><?php echo $result['Answer']; ?></td>
         <td>
             <!-- 수정, 삭제 버튼 -->
-            <button onclick="location.replace('hei_update.php?week=<?php echo $result['week']; ?>')">수정</button>
-            <button onclick="location.replace('hei_delete.php?week=<?php echo $result['week']; ?>')">삭제</button>
+            <button onclick="location.replace('/hei/update?week=<?php echo $result['week']; ?>')">수정</button>
+            <button onclick="location.replace('/hei/delete?week=<?php echo $result['week']; ?>')">삭제</button>
         </td>
     </tr>
 <?php
@@ -57,13 +57,13 @@ echo "page {$results['page']} of {$results['lastPage']}";
 // 페이지 네비게이션
 if ($now != 1) {
 ?>
-    <button onclick="location.replace('hei_list.php?page=<?php echo $now-1; ?>&count=<?php echo $count; ?>&week=<?php echo $week; ?>')">Prev</button>
+    <button onclick="location.replace('/hei/list?page=<?php echo $now-1; ?>&count=<?php echo $count; ?>&week=<?php echo $week; ?>')">Prev</button>
 <?php 
 }
 if ($results['lastPage'] != $now) {
 ?>
-    <button onclick="location.replace('hei_list.php?page=<?php echo $now+1; ?>&count=<?php echo $count; ?>&week=<?php echo $week; ?>')">Next</button>
+    <button onclick="location.replace('/hei/list?page=<?php echo $now+1; ?>&count=<?php echo $count; ?>&week=<?php echo $week; ?>')">Next</button>
 <?php
 }
 ?>
-<button onclick="location.replace('hei_insert.php')">질문과 답변 등록</button>
+<button onclick="location.replace('/hei/insert')">질문과 답변 등록</button>
