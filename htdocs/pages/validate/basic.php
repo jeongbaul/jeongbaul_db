@@ -5,6 +5,7 @@
 
 <input type="button" onclick="goCheck()" value="login">
 
+<input type="button" onclick="check()" value="confirm테스트">
 <script>
     function goCheck(){
         id = document.getElementById('id').value;
@@ -14,5 +15,12 @@
             alert(id)
         }
     }
+    function check(){
+        if(confirm("정말로 삭제하시겠습니까?")){
+            alert("삭제");
+        } else {
+            alert("취소");
+        }
 
+    }
 </script>
