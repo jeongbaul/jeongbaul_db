@@ -24,4 +24,4 @@ if (isset($_GET['week'])) {
     <input type="submit" value="조회">
 </form>
 
-<button onclick="location.href='hei_list.php'">목록으로</button>
+<button onclick="location.href='/hei/list'">목록으로</button>
