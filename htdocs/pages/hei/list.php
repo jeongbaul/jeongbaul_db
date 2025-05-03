@@ -43,6 +43,7 @@ foreach ($results['data'] as $result) {
             <!-- 수정, 삭제 버튼 -->
             <button onclick="location.replace('/hei/update?week=<?php echo $result['week']; ?>')">수정</button>
             <button onclick="location.replace('/hei/delete?week=<?php echo $result['week']; ?>')">삭제</button>
+            
         </td>
     </tr>
 <?php
