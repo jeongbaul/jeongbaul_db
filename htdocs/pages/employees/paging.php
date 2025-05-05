@@ -14,4 +14,3 @@ foreach ($result['data'] as $user) {
 <br/><br/><br/>
 <?php
 echo "page {$result['page']} of {$result['lastPage']}";
-

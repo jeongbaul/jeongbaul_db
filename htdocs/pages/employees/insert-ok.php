@@ -16,3 +16,4 @@ if($result !== false){
 } else {
     echo "Failed to create employees\n";
 }
+?>

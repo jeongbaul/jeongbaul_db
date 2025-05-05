@@ -6,13 +6,23 @@ $now = isset($_GET['page']) ? (int)$_GET['page'] : 1;
 $count = isset($_GET['count']) ? (int)$_GET['count'] : 20;
 $last_name = isset($_GET['last_name']) ? $_GET['last_name'] : "";
 ?>
-<form method="get" action="#">
+
+<form method="get" action="#" onsubmit="return validateSearch();">
     <input type="hidden" name="page" value="1" />
     <input type="hidden" name="count" value="<?php echo $count; ?>" />
-    <input type="text" name="last_name" value="<?php echo $last_name; ?>"/>
+    <input type="text" id="last_name" name="last_name" value="<?php echo $last_name; ?>"/>
     <input type="submit" value="검색" />
 </form>
-
+<script>
+function validateSearch() {
+    const searchInput = document.getElementById('last_name').value.trim();
+    if (searchInput === "") {
+        alert('검색어를 입력해주세요');
+        return false;
+    }
+    return true;
+}
+</script>
 
 <table border="1">
     <tr>

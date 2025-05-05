@@ -7,10 +7,8 @@ if (!isset($_GET['confirmed'])) {
     echo "
     <script>
         if (confirm('정말로 삭제하시겠습니까?')) {
-            // 확인 → 같은 페이지로 confirmed 파라미터 붙여 재요청
-            location.href = 'delete-ok.php?emp_no={$emp_no}&confirmed=1';
+            location.href = 'delete-ok?emp_no={$emp_no}&confirmed=1';
         } else {
-            // 취소 → 알림 후 목록으로
             alert('취소하셨습니다');
             location.replace('list');
         }
