@@ -1,4 +1,10 @@
 RewriteEngine On
 RewriteBase /
+
+# uploads 폴더 내 파일은 rewrite 예외 처리
+RewriteCond %{REQUEST_URI} ^/uploads/ [NC]
+RewriteRule .* - [L]
+
+
 RewriteRule ^([^/]+)/([^/]+)$ index.php?context1=$1&context2=$2 [L,QSA]
 RewriteRule ^([^/]+)/([^/]+)/([^/]+)$ index.php?context1=$1&context2=$2&action=$3 [L,QSA]
