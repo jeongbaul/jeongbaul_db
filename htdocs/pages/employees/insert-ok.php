@@ -17,3 +17,4 @@ if($result !== false){
     echo "Failed to create employees\n";
 }
 ?>
+<button onclick="location.replace('list')">목록으로</button>

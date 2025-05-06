@@ -42,7 +42,7 @@ $emp = $user[0];
 </head>
 <body>
     <h1>사원 정보 수정</h1>
-    <form action="update-ok.php" method="post" onsubmit="return validateForm()">
+    <form action="update-ok" method="post" onsubmit="return validateForm()">
         <input type="hidden" name="emp_no" value="<?php echo htmlspecialchars($emp['emp_no']); ?>" />
 
         First Name: <input type="text" name="first_name" value="<?php echo htmlspecialchars($emp['first_name']); ?>" required><br />
