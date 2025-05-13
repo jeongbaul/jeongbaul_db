@@ -1,7 +1,4 @@
 <?php
-include $_SERVER['DOCUMENT_ROOT'].'/lib/dbconnect.php';
-include $_SERVER['DOCUMENT_ROOT'].'/lib/db.php';
-
 $now = isset($_GET['page']) ? (int)$_GET['page'] : 1;
 $count = isset($_GET['count']) ? (int)$_GET['count'] : 20;
 $week = isset($_GET['week']) ? $_GET['week'] : "";

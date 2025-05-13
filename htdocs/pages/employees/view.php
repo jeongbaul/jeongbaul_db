@@ -1,7 +1,4 @@
 <?php
-include $_SERVER['DOCUMENT_ROOT'].'/lib/dbconnect.php';
-include $_SERVER['DOCUMENT_ROOT'].'/lib/db.php';
-
 // 사원 정보를 조회
 $user = read('employees', ['emp_no' => $_GET['emp_no']], '', '1');
 print_r($user);
@@ -22,7 +19,7 @@ print_r($user);
     BirthDate: <?php echo $user[0]['birth_date']; ?><br />
     Gender: <?php echo $user[0]['gender']; ?><br />
     HireDate: <?php echo $user[0]['hire_date']; ?><br />
-<img src="/<?php echo $user[0]['photo_path']; ?>" alt-="Default profile Picture" width="100" height="100" />
+<img src="/<?php echo $user[0]['photo_path']; ?>" alt-="Default profile Picture" />
 
     <!-- 사진이 있으면 출력, 없으면 기본 이미지 출력 -->
     

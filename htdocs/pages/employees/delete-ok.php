@@ -1,7 +1,4 @@
 <?php
-include $_SERVER['DOCUMENT_ROOT'].'/lib/dbconnect.php';
-include $_SERVER['DOCUMENT_ROOT'].'/lib/db.php';
-
 if ($_SERVER['REQUEST_METHOD'] === 'GET') {
     $emp_no = $_GET['emp_no'] ?? null;
     $confirmed = $_GET['confirmed'] ?? null;

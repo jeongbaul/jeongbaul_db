@@ -1,7 +1,4 @@
 <?php
-include $_SERVER['DOCUMENT_ROOT'].'/lib/dbconnect.php';
-include $_SERVER['DOCUMENT_ROOT'].'/lib/db.php';
-
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $emp_no = $_POST['emp_no'];
     $updateData = [

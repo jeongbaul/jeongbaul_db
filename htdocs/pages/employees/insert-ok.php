@@ -1,7 +1,4 @@
 <?php
-include $_SERVER['DOCUMENT_ROOT'].'/lib/dbconnect.php';
-include $_SERVER['DOCUMENT_ROOT'].'/lib/db.php';
-
 // 직원 정보 받기
 $birth_date = $_POST['birth_date'];
 $first_name = $_POST['first_name'];

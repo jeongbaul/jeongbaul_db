@@ -1,7 +1,4 @@
 <?php
-include $_SERVER['DOCUMENT_ROOT'].'/lib/dbconnect.php';
-include $_SERVER['DOCUMENT_ROOT'].'/lib/db.php';
-
 if (!isset($_GET['emp_no'])) {
     echo "<script>alert('사원 번호가 없습니다.'); history.back();</script>";
     exit;

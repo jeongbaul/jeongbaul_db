@@ -1,7 +1,4 @@
 <?php
-include $_SERVER['DOCUMENT_ROOT'].'/lib/dbconnect.php';
-include $_SERVER['DOCUMENT_ROOT'].'/lib/db.php';
-
 $last_name="";
 if(isset($_POST['last_name'])){
     $last_name = $_POST['last_name'];
