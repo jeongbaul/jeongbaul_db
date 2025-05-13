@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>사원 등록</title>
     <script>
         function validateForm() {
             const first = document.querySelector('input[name="first_name"]').value.trim();
@@ -23,27 +23,22 @@
 </head>
 <body>
     <h1>사원등록</h1>
-    <!--등록화면
-        method : GET, POST
-        data:
-            'emp_no' => '500000',
-            'birth_date' => '1955-11-20',
-            'first_name' => 'joonhyeok',
-            'last_name' => 'lim',z
-            'gender' => 'M' ,
-            'hire_date' => '2025-01-22'        
-    -->
+    <!-- 직원 등록 폼 -->
+    <form action="insert-ok" method="post" onsubmit="return validateForm()" enctype="multipart/form-data">
+        FirstName: <input type="text" name="first_name" required /><br />
+        LastName: <input type="text" name="last_name" required /><br />
+        BirthDate: <input type="date" name="birth_date" required /><br />
+        Gender: 
+        <input type="radio" name="gender" value="M" id="genderM" required />
+        <label for="genderM">남성</label>
+        <input type="radio" name="gender" value="F" id="genderF" />
+        <label for="genderF">여성</label><br />
+        HireDate: <input type="date" name="hire_date" required /><br />
+        Profile Picture: <input type="file" name="photo" accept="image/*" /><br />
 
-    <form action="insert-ok" method="post" onsubmit="return validateForm()">
-    FirstName:<input type="text" name="first_name" /><br />
-    LastName:<input type="text" name="last_name" /><br />
-    BirthDate:<input type="text" name="birth_date" /><br />
-    Gender:<input type="text" name="gender" /><br />
-    HireDate:<input type="text" name="hire_date" /><br />
-    <input type="submit" value="등록하기" />
-    <input type="button" onclick="validateForm()" value="test" />
-    <input type="reset" value="초기화" />
-    <input type="button" value="뒤로가기" onclick="location.replace('list')" />
+        <input type="submit" value="등록하기" />
+        <input type="reset" value="초기화" />
+        <input type="button" value="뒤로가기" onclick="location.replace('list')" />
     </form>
 </body>
 </html>
