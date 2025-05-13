@@ -5,6 +5,9 @@ RewriteBase /
 RewriteCond %{REQUEST_URI} ^/uploads/ [NC]
 RewriteRule .* - [L]
 
+# 정적 파일(js, css, 이미지 등)은 rewrite 예외 처리
+RewriteCond %{REQUEST_URI} \.(js|css|png|jpg|jpeg|gif|ico|svg)$ [NC]
+RewriteRule .* - [L]
 
 RewriteRule ^([^/]+)/([^/]+)$ index.php?context1=$1&context2=$2 [L,QSA]
 RewriteRule ^([^/]+)/([^/]+)/([^/]+)$ index.php?context1=$1&context2=$2&action=$3 [L,QSA]

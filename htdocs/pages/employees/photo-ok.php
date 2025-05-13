@@ -1,9 +1,7 @@
 <?php
-include $_SERVER['DOCUMENT_ROOT'].'/lib/dbconnect.php';
-include $_SERVER['DOCUMENT_ROOT'].'/lib/db.php';
-
 // Create
 $target_dir = "uploads/";
+$target_dir2 = "uploads/thumbnail/";
 $filename = $_FILES['fileToUpload']['name']; // 파일.png
 $ext = strtolower(pathinfo($filename, PATHINFO_EXTENSION));
 $file_name = date('YmdHis') . "." . $ext; // 20250506203915.png
@@ -17,6 +15,14 @@ if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file)) {
     echo"<br>tmp_name". $_FILES["fileToUpload"]["tmp_name"];
     echo"<br>error". $_FILES["fileToUpload"]["error"];
     echo"<br>full_path". $_FILES["fileToUpload"]["full_path"];
+
+    $src  = $target_file;
+    $dest = $target_dir2 . $file_name;
+    if (create_thumbnail($src, $dest, 150)) {
+        echo "썸네일 생성 성공!";
+    } else {
+        echo "썸네일 생성 실패!";
+    }
 
 } else {
     echo "실패";
