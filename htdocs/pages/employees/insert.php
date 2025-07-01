@@ -35,10 +35,11 @@
         <label for="genderF">여성</label><br />
         HireDate: <input type="date" name="hire_date" required /><br />
         Profile Picture: <input type="file" name="photo" accept="image/*" /><br />
-
         <input type="submit" value="등록하기" />
         <input type="reset" value="초기화" />
         <input type="button" value="뒤로가기" onclick="location.replace('list')" />
     </form>
 </body>
 </html>
+
+

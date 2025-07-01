@@ -39,7 +39,7 @@ $emp = $user[0];
 </head>
 <body>
     <h1>사원 정보 수정</h1>
-    <form action="update-ok" method="post" onsubmit="return validateForm()">
+    <form action="update-ok" method="post" onsubmit="return validateForm()" enctype="multipart/form-data">
         <input type="hidden" name="emp_no" value="<?php echo htmlspecialchars($emp['emp_no']); ?>" />
 
         First Name: <input type="text" name="first_name" value="<?php echo htmlspecialchars($emp['first_name']); ?>" required><br />
@@ -51,6 +51,16 @@ $emp = $user[0];
             <option value="F" <?php if ($emp['gender'] == 'F') echo 'selected'; ?>>여자 (F)</option>
         </select><br />
         Hire Date: <input type="date" name="hire_date" value="<?php echo $emp['hire_date']; ?>" required><br /><br />
+
+        <?php if (!empty($emp['thumbnail_path']) && file_exists($emp['thumbnail_path'])): ?>
+            <img src="/<?php echo htmlspecialchars($emp['thumbnail_path']); ?>" alt="현재 이미지" style="width:100px; height:auto;"><br />
+        <?php else: ?>
+            <p>현재 이미지 없음</p>
+        <?php endif; ?>
+
+        <label>새 프로필 사진 선택:</label>
+        <input type="file" name="photo" accept="image/*" /><br /><br />
+
         <input type="submit" value="수정하기">
         <input type="reset" value="초기화">
         <input type="button" value="뒤로가기" onclick="location.href='list'">
