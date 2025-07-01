@@ -42,4 +42,4 @@ if($result !== false){
 }
 
 ?>
-<button onclick="location.replace('photo-list')">파일목록</button>
+<button onclick="location.replace('/photo/list')">파일목록</button>

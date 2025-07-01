@@ -50,19 +50,21 @@
     // 폼 제출 이벤트
     document.getElementById('captchaForm').onsubmit = function(e) {
       e.preventDefault();
+      
       const userInput = document.getElementById('captchaInput').value.trim().toUpperCase();
+      
       if (userInput === captchaValue) {
         // document.getElementById('result').textContent = '정답입니다!';
         this.submit();
       } else {
         document.getElementById('result').textContent = '틀렸습니다. 다시 시도하세요.';
-        drawCaptcha();
+        captchaValue = drawCaptcha();
       }
       document.getElementById('captchaInput').value = '';
     };
 
     // 페이지 로드시 캡차 그리기
-    drawCaptcha();
+    captchaValue = drawCaptcha();
   </script>
 </body>
 </html>
