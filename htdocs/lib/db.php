@@ -1,97 +1,115 @@
 <?php
+// DB 연결
+function getConnection() {
+    $conn = new mysqli("localhost", "root", "", "employees");
+    if ($conn->connect_error) {
+        die("DB 연결 실패: " . $conn->connect_error);
+    }
+    $conn->set_charset("utf8");
+    return $conn;
+}
+
 // Create
 function create($table, $data) {
     $conn = getConnection();
     $columns = implode(", ", array_keys($data));
-    $placeholders = ":" . implode(", :", array_keys($data));
+    $placeholders = implode(", ", array_fill(0, count($data), '?'));
+    $types = str_repeat('s', count($data)); // 모든 값을 문자열로 처리
+
     $query = "INSERT INTO $table ($columns) VALUES ($placeholders)";
     $stmt = $conn->prepare($query);
-    
-    foreach ($data as $key => $value) {
-        $stmt->bindValue(":$key", $value);
-    }
-    
-    if ($stmt->execute()) {
-        $lastId = $conn->lastInsertId();
-        return $lastId !=='0' ? $lastId : true;
-    }
-    return false;
+    if (!$stmt) return false;
+
+    $stmt->bind_param($types, ...array_values($data));
+
+    $result = $stmt->execute();
+    $insertId = $stmt->insert_id;
+
+    $stmt->close();
+    $conn->close();
+
+    return $result ? ($insertId ?: true) : false;
 }
 
 // Read
 function read($table, $conditions = [], $orderBy = '', $limit = '') {
     $conn = getConnection();
     $query = "SELECT * FROM $table";
-    
+    $params = [];
+    $types = '';
+
     if (!empty($conditions)) {
-        $query .= " WHERE " . implode(' AND ', array_map(function($item) {
-            return "$item = :$item";
-        }, array_keys($conditions)));
+        $query .= " WHERE " . implode(" AND ", array_map(fn($k) => "$k = ?", array_keys($conditions)));
+        $params = array_values($conditions);
+        $types = str_repeat('s', count($params));
     }
-    
-    if ($orderBy) {
-        $query .= " ORDER BY $orderBy";
-    }
-    
-    if ($limit) {
-        $query .= " LIMIT $limit";
-    }
-    
+
+    if ($orderBy) $query .= " ORDER BY $orderBy";
+    if ($limit) $query .= " LIMIT $limit";
+
     $stmt = $conn->prepare($query);
-    
-    foreach ($conditions as $key => $value) {
-        $stmt->bindValue(":$key", $value);
+    if (!$stmt) return [];
+
+    if (!empty($params)) {
+        $stmt->bind_param($types, ...$params);
     }
-    
+
     $stmt->execute();
-    return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    $result = $stmt->get_result();
+
+    $rows = $result->fetch_all(MYSQLI_ASSOC);
+    $stmt->close();
+    $conn->close();
+
+    return $rows;
 }
 
+// ReadPaging
 function readPaging($table, $conditions = [], $orderBy = '', $page = 1, $perPage = 10) {
     $conn = getConnection();
-    $query = "SELECT * FROM $table";
-    
+    $params = [];
+    $types = '';
+    $whereSql = '';
+
     if (!empty($conditions)) {
-        $query .= " WHERE " . implode(' AND ', array_map(function($item) {
-            return "$item = :$item";
-        }, array_keys($conditions)));
+        $whereSql = " WHERE " . implode(" AND ", array_map(fn($k) => "$k = ?", array_keys($conditions)));
+        $params = array_values($conditions);
+        $types = str_repeat('s', count($params));
     }
-    
-    if ($orderBy) {
-        $query .= " ORDER BY $orderBy";
-    }
-    
-    // �꾩껜 �덉퐫�� �� 怨꾩궛
-    $countQuery = "SELECT COUNT(*) as total FROM $table";
-    if (!empty($conditions)) {
-        $countQuery .= " WHERE " . implode(' AND ', array_map(function($item) {
-            return "$item = :$item";
-        }, array_keys($conditions)));
-    }
+
+    // 총 레코드 수
+    $countQuery = "SELECT COUNT(*) as total FROM $table $whereSql";
     $countStmt = $conn->prepare($countQuery);
-    foreach ($conditions as $key => $value) {
-        $countStmt->bindValue(":$key", $value);
+    if (!empty($params)) {
+        $countStmt->bind_param($types, ...$params);
     }
     $countStmt->execute();
-    $totalRecords = $countStmt->fetch(PDO::FETCH_ASSOC)['total'];
-    
-    // �섏씠吏� �곸슜
+    $countResult = $countStmt->get_result()->fetch_assoc();
+    $totalRecords = $countResult['total'];
+    $countStmt->close();
+
+    // 데이터 가져오기
     $offset = ($page - 1) * $perPage;
-    $query .= " LIMIT :offset, :perPage";
-    
-    $stmt = $conn->prepare($query);
-    $stmt->bindValue(':offset', $offset, PDO::PARAM_INT);
-    $stmt->bindValue(':perPage', $perPage, PDO::PARAM_INT);
-    
-    foreach ($conditions as $key => $value) {
-        $stmt->bindValue(":$key", $value);
-    }
-    
+    $dataQuery = "SELECT * FROM $table $whereSql";
+    if ($orderBy) $dataQuery .= " ORDER BY $orderBy";
+    $dataQuery .= " LIMIT ?, ?";
+
+    $stmt = $conn->prepare($dataQuery);
+    $allParams = $params;
+    $typesWithPaging = $types . 'ii';
+    $allParams[] = $offset;
+    $allParams[] = $perPage;
+
+    $stmt->bind_param($typesWithPaging, ...$allParams);
     $stmt->execute();
-    $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
-    
+    $result = $stmt->get_result();
+
+    $rows = $result->fetch_all(MYSQLI_ASSOC);
+    $stmt->close();
+    $conn->close();
+
     return [
-        'data' => $results,
+        'data' => $rows,
         'total' => $totalRecords,
         'page' => $page,
         'perPage' => $perPage,
@@ -102,43 +120,39 @@ function readPaging($table, $conditions = [], $orderBy = '', $page = 1, $perPage
 // Update
 function update($table, $data, $conditions) {
     $conn = getConnection();
-    $set = implode(', ', array_map(function($item) {
-        return "$item = :$item";
-    }, array_keys($data)));
-    
-    $where = implode(' AND ', array_map(function($item) {
-        return "$item = :condition_$item";
-    }, array_keys($conditions)));
-    
-    $query = "UPDATE $table SET $set WHERE $where";
+    $setPart = implode(", ", array_map(fn($k) => "$k = ?", array_keys($data)));
+    $wherePart = implode(" AND ", array_map(fn($k) => "$k = ?", array_keys($conditions)));
+
+    $query = "UPDATE $table SET $setPart WHERE $wherePart";
     $stmt = $conn->prepare($query);
-    
-    foreach ($data as $key => $value) {
-        $stmt->bindValue(":$key", $value);
-    }
-    
-    foreach ($conditions as $key => $value) {
-        $stmt->bindValue(":condition_$key", $value);
-    }
-    
-    return $stmt->execute();
+
+    $allData = array_merge(array_values($data), array_values($conditions));
+    $types = str_repeat('s', count($allData));
+
+    $stmt->bind_param($types, ...$allData);
+    $result = $stmt->execute();
+
+    $stmt->close();
+    $conn->close();
+
+    return $result;
 }
 
 // Delete
-function delete($table,array $conditions) {
+function delete($table, $conditions) {
     $conn = getConnection();
-    $where = implode(' AND ', array_map(function($item) {
-        return "$item = :$item";
-    }, array_keys($conditions)));
-    $query = "DELETE FROM $table WHERE $where";
-    
-    $stmt = $conn->prepare($query);
-    
-    foreach ($conditions as $key => $value) {
-        $stmt->bindValue(":$key", $value);
-    }
-    
-    return $stmt->execute();
-}
+    $wherePart = implode(" AND ", array_map(fn($k) => "$k = ?", array_keys($conditions)));
+    $query = "DELETE FROM $table WHERE $wherePart";
 
+    $stmt = $conn->prepare($query);
+    $types = str_repeat('s', count($conditions));
+    $stmt->bind_param($types, ...array_values($conditions));
+
+    $result = $stmt->execute();
+
+    $stmt->close();
+    $conn->close();
+
+    return $result;
+}
 ?>
