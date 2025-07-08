@@ -1,13 +1,13 @@
 <?php
-// 직원 등록 처리 - 사진, 캡처 업로드 + 썸네일 생성 포함
+require_once 'db.php'; // mysqli 버전 db.php 포함
 
-// 폴더 및 함수 준비
+// 업로드 폴더 설정
 $target_dir = "uploads/";
 if (!is_dir($target_dir)) {
     mkdir($target_dir, 0777, true);
 }
 
-// 이미지 썸네일 생성 함수
+// 썸네일 생성 함수
 function createThumbnail($srcFile, $destFile, $thumbWidth = 150) {
     list($width, $height, $type) = getimagesize($srcFile);
 
@@ -60,28 +60,23 @@ $last_name = $_POST['last_name'] ?? null;
 $gender = $_POST['gender'] ?? null;
 $hire_date = $_POST['hire_date'] ?? null;
 
-// 기본 변수 초기화
+// 초기화
 $photoFileName = null;
 $photoPath = null;
 $photoThumbPath = null;
 
-$captureFileName = null;
-$capturePath = null;
-$captureThumbPath = null;
-
-// 1) 프로필 사진 업로드 및 썸네일 생성
+// 사진 업로드 처리
 if (!empty($_FILES['photo']['name'])) {
     $filename = $_FILES['photo']['name'];
     $ext = strtolower(pathinfo($filename, PATHINFO_EXTENSION));
     $photoFileName = date('YmdHis') . "_photo." . $ext;
     $photoPath = $target_dir . $photoFileName;
-    
+
     if (!move_uploaded_file($_FILES['photo']['tmp_name'], $photoPath)) {
         echo "프로필 사진 업로드 실패!";
         exit;
     }
 
-    // 썸네일 경로
     $photoThumbPath = $target_dir . "thumb_" . $photoFileName;
 
     if (!createThumbnail($photoPath, $photoThumbPath)) {
@@ -90,7 +85,7 @@ if (!empty($_FILES['photo']['name'])) {
     }
 }
 
-// 3) DB 저장용 배열 준비
+// DB 저장용 데이터 배열
 $userData = [
     'birth_date'     => $birth_date,
     'first_name'     => $first_name,
@@ -99,11 +94,9 @@ $userData = [
     'hire_date'      => $hire_date,
     'photo_path'     => $photoPath,
     'thumbnail_path' => $photoThumbPath,
-    // 'capture_path'   => $capturePath,
-    // 'capture_thumb_path' => $captureThumbPath,
 ];
 
-// 4) DB 저장 - create() 함수 사용 (lib/db.php에 정의된 함수로 가정)
+// DB 저장 실행 (mysqli 기반 create 함수)
 $result = create('employees', $userData);
 
 if ($result !== false) {
