@@ -1,5 +1,5 @@
 <?php
-    include_once $_SERVER['DOCUMENT_ROOT'].'/lib/dbconnect.php';
+    // include_once $_SERVER['DOCUMENT_ROOT'].'/lib/dbconnect.php';
     include_once $_SERVER['DOCUMENT_ROOT'].'/lib/db.php';
     include_once $_SERVER['DOCUMENT_ROOT'].'/common/lib.php';
 ?>
