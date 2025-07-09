@@ -1,16 +1,4 @@
 <h1>서브페이지</h1>
-
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark mb-4">
   <div class="container">
 
@@ -35,8 +23,6 @@
     </div>
   </div>
 </nav>
-</body>
-</html>
 <?php
     //echo "context1=".$context1.", context2=".$context2.", action=".$action;
     switch($context1){
@@ -47,6 +33,7 @@
         case "join":
         case "photo":
         case "hei":
+        case "menu":
                 include("./pages/".$context1."/".$context2.".php");
             break;
 
