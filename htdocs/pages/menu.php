@@ -34,6 +34,7 @@
         case "photo":
         case "hei":
         case "menu":
+        case "250715":
                 include("./pages/".$context1."/".$context2.".php");
             break;
 
