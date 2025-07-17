@@ -19,27 +19,47 @@
         <li class="nav-item">
           <a class="nav-link" href="/validate/week">금주의 하이델베르크</a>
         </li>
+
+        <!-- 메뉴관리 메뉴 추가 -->
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            메뉴관리
+          </a>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="/menu/menu-form">메뉴 등록</a></li>
+            <li><a class="dropdown-item" href="/menu/menu-list">메뉴 리스트</a></li>
+          </ul>
+        </li>
+
       </ul>
     </div>
   </div>
 </nav>
-<?php
-    //echo "context1=".$context1.", context2=".$context2.", action=".$action;
-    switch($context1){
-        case "employees":
-        case "board":
-        case "gallery":
-        case "validate":
-        case "join":
-        case "photo":
-        case "hei":
-        case "menu":
-        case "250715":
-                include("./pages/".$context1."/".$context2.".php");
-            break;
 
-        default:
-            include("./pages/error.php");
-            break;
-    }
+<?php
+// 페이지 호출 처리
+switch($context1){
+    case "employees":
+    case "board":
+    case "gallery":
+    case "validate":
+    case "join":
+    case "photo":
+    case "hei":
+    case "250715":
+    case "menu":
+        $filepath = "./pages/".$context1."/".$context2;
+        if (substr($filepath, -4) !== ".php") {
+            $filepath .= ".php";
+        }
+        if (file_exists($filepath)) {
+            include($filepath);
+        } else {
+            echo "<p>페이지가 존재하지 않습니다.</p>";
+        }
+        break;
+    default:
+        include("./pages/error.php");
+        break;
+}
 ?>
