@@ -46,6 +46,7 @@ switch($context1){
     case "join":
     case "photo":
     case "hei":
+    case "250715":
     case "menu":
         $filepath = "./pages/".$context1."/".$context2;
         if (substr($filepath, -4) !== ".php") {
@@ -57,7 +58,6 @@ switch($context1){
             echo "<p>페이지가 존재하지 않습니다.</p>";
         }
         break;
-
     default:
         include("./pages/error.php");
         break;
