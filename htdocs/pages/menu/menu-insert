@@ -1,18 +1,4 @@
 <?php
-session_start();
-
-// 로그인 검사
-if (!isset($_SESSION['id'])) {
-    echo "<script>alert('로그인 후 이용해주세요.'); location.href='/user/login';</script>";
-    exit;
-}
-
-// 관리자 권한 검사
-if (!isset($_SESSION['level']) || $_SESSION['level'] != 1) {
-    echo "<script>alert('관리자만 등록할 수 있습니다.'); history.back();</script>";
-    exit;
-}
-
 if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
     echo "잘못된 접근입니다.";
     exit;
@@ -29,10 +15,7 @@ if (!$menu_id || !$menu_name || !$menu_path || !$order_num) {
     exit;
 }
 
-$conn = new mysqli("localhost", "root", "", "employees");
-if ($conn->connect_error) {
-    die("DB 연결 실패: " . $conn->connect_error);
-}
+$conn = new mysqli("localhost", "root", "", "employees"); // DB명 수정
 
 $sql = "INSERT INTO MENU (MENU_ID, MENU_NAME, MENU_PATH, MENU_UPPER, ORDER_NUM)
         VALUES (?, ?, ?, ?, ?)";
