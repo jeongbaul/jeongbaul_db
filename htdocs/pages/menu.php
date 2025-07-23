@@ -28,9 +28,12 @@
           <ul class="dropdown-menu">
             <li><a class="dropdown-item" href="/menu/menu-form">메뉴 등록</a></li>
             <li><a class="dropdown-item" href="/menu/menu-list">메뉴 리스트</a></li>
+            <li><a class="dropdown-item" href="/user/login">사용자 로그인</a></li>
           </ul>
         </li>
-
+                <li class="nav-item">
+          <a class="nav-link" href="/user/login">사용자</a>
+        </li>
       </ul>
     </div>
   </div>
@@ -46,7 +49,6 @@ switch($context1){
     case "join":
     case "photo":
     case "hei":
-    case "250715":
     case "menu":
         $filepath = "./pages/".$context1."/".$context2;
         if (substr($filepath, -4) !== ".php") {
@@ -58,6 +60,7 @@ switch($context1){
             echo "<p>페이지가 존재하지 않습니다.</p>";
         }
         break;
+
     default:
         include("./pages/error.php");
         break;
