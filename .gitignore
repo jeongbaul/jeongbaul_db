@@ -42,3 +42,10 @@ xampp-control.ini
 xampp-control.log
 xampp_start.exe
 xampp_stop.exe
+*.bat
+*.exe
+*.ini
+mailtodisk
+src
+img
+onefile.html
