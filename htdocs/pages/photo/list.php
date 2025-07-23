@@ -6,6 +6,9 @@
 <?php
 $now = 1;
 $count = 10;
+
+session_start();
+
 $results = readPaging('photo', [], 'no DESC', $now, $count);
 foreach ($results['data'] as $result) {
 ?>
@@ -17,4 +20,9 @@ foreach ($results['data'] as $result) {
 }
 ?>
 </table>
-<button onclick="location.replace('photo')">사진등록</button>
+<?php
+if (!isset($_SESSION['LEVEL']) && $_SESSION['LEVEL'] == 2 ){
+?>
+<button onclick="location.replace('photo')">사진등록</button><?php
+}
+?>
