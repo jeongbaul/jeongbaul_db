@@ -33,8 +33,8 @@
         <!-- Header-->
         <header class="masthead d-flex align-items-center">
             <div class="container px-4 px-lg-5 text-center">
-                <h1 class="mb-1">Stylish Portfolio</h1>
-                <h3 class="mb-5"><em>A Free Bootstrap Theme by Start Bootstrap</em></h3>
+                <h1 class="mb-1">부천의 사나이 정바울</h1>
+                <h3 class="mb-5"><em>그의 오레오와 우유</em></h3>
                 <a class="btn btn-primary btn-xl" href="#about">Find Out More</a>
             </div>
         </header>
@@ -49,7 +49,7 @@
                             <a href="https://unsplash.com/">Unsplash</a>
                             !
                         </p>
-                        <a class="btn btn-dark btn-xl" href="#services">What We Offer</a>
+                        <a class="btn btn-dark btn-xl" href="#services">portfolio My psojects</a>
                     </div>
                 </div>
             </div>
@@ -58,14 +58,30 @@
         <section class="content-section bg-primary text-white text-center" id="services">
             <div class="container px-4 px-lg-5">
                 <div class="content-section-heading">
-                    <h3 class="text-secondary mb-0">Services</h3>
-                    <h2 class="mb-5">What We Offer</h2>
+                    <h3 class="text-secondary mb-0">skill</h3>
+                    <h2 class="mb-5">portfolio My psojects
+                    </h2>
                 </div>
                 <div class="row gx-4 gx-lg-5">
                     <div class="col-lg-3 col-md-6 mb-5 mb-lg-0">
                         <span class="service-icon rounded-circle mx-auto mb-3"><i class="icon-screen-smartphone"></i></span>
-                        <h4><strong>Responsive</strong></h4>
-                        <p class="text-faded mb-0">Looks great on any screen size!</p>
+                        <h4><strong>php</strong></h4>
+                        <p class="text-faded mb-0">정바울이 동적 웹 페이지를 만들기 위해 배운 범용 프로그래밍 언어</p>
+                    </div>
+                    <div class="col-lg-3 col-md-6 mb-5 mb-lg-0">
+                        <span class="service-icon rounded-circle mx-auto mb-3"><i class="icon-screen-smartphone"></i></span>
+                        <h4><strong>study</strong></h4>
+                        <p class="text-faded mb-0">웹 페이지 스타일을 배우면서 정리한 노트</p>
+                    </div>
+                    <div class="col-lg-3 col-md-6 mb-5 mb-lg-0">
+                        <span class="service-icon rounded-circle mx-auto mb-3"><i class="icon-screen-smartphone"></i></span>
+                        <h4><strong>html_study</strong></h4>
+                        <p class="text-faded mb-0">웹 페이지 스타일을 배우면서 정리한 노트</p>
+                    </div>
+                    -<div class="col-lg-3 col-md-6 mb-5 mb-lg-0">
+                        <span class="service-icon rounded-circle mx-auto mb-3"><i class="icon-screen-smartphone"></i></span>
+                        <h4><strong>jeongbaul_db</strong></h4>
+                        <p class="text-faded mb-0">본격적인 프로젝트의 시작을 정리해둔 데이터베이스</p>
                     </div>
                 </div>
             </div>
@@ -78,14 +94,14 @@
                     <em>your</em>
                     next website!
                 </h2>
-                <a class="btn btn-primary btn-xl" href="https://startbootstrap.com/theme/stylish-portfolio/">Download Now!</a>
+                <a class="btn btn-primary btn-xl" href="https://github.com/jeongbaul/freeboard">Download Now!</a>
             </div>
         </section>
         <!-- Portfolio-->
         <section class="content-section" id="portfolio">
             <div class="container px-4 px-lg-5">
                 <div class="content-section-heading text-center">
-                    <h3 class="text-secondary mb-0">Portfolio</h3>
+                    <h3 class="text-secondary mb-0">project</h3>
                     <h2 class="mb-5">Recent Projects</h2>
                 </div>
                 <div class="row gx-0">
@@ -93,74 +109,41 @@
                         <a class="portfolio-item" href="https://github.com/jeongbaul/freeboard">
                             <div class="caption">
                                 <div class="caption-content">
-                                    <div class="h2">Stationary</div>
-                                    <p class="mb-0">A yellow pencil with envelopes on a clean, blue backdrop!</p>
+                                    <div class="h2">freeboard</div>
+                                    <p class="mb-0">정바울이 동적 웹 페이지를 만들기 위해 배운 범용 프로그래밍 언어</p>
                                 </div>
                             </div>
                             <img class="img-fluid" src="assets/img/portfolio-1.jpg" alt="..." />
                         </a>
                     </div>
                     <div class="col-lg-6">
-                        <a class="portfolio-item" href="#!">
+                        <a class="portfolio-item" href="https://github.com/jeongbaul/study">
                             <div class="caption">
                                 <div class="caption-content">
-                                    <div class="h2">Ice Cream</div>
-                                    <p class="mb-0">A dark blue background with a colored pencil, a clip, and a tiny ice cream cone!</p>
+                                    <div class="h2">study</div>
+                                    <p class="mb-0">웹 페이지 스타일을 배우면서 정리한 노트</p>
                                 </div>
                             </div>
                             <img class="img-fluid" src="assets/img/portfolio-2.jpg" alt="..." />
                         </a>
                     </div>
                     <div class="col-lg-6">
-                        <a class="portfolio-item" href="#!">
+                        <a class="portfolio-item" href="https://github.com/jeongbaul/html_study">
                             <div class="caption">
                                 <div class="caption-content">
-                                    <div class="h2">Strawberries</div>
-                                    <p class="mb-0">Strawberries are such a tasty snack, especially with a little sugar on top!</p>
+                                    <div class="h2">html_study</div>
+                                    <p class="mb-0">웹 페이지 스타일을 배우면서 정리한 노트</p>
                                 </div>
                             </div>
                             <img class="img-fluid" src="assets/img/portfolio-3.jpg" alt="..." />
                         </a>
                     </div>
                     <div class="col-lg-6">
-                        <a class="portfolio-item" href="#!">
+                        <a class="portfolio-item" href="https://github.com/jeongbaul/jeongbaul_db">
                             <div class="caption">
                                 <div class="caption-content">
-                                    <div class="h2">Workspace</div>
-                                    <p class="mb-0">A yellow workspace with some scissors, pencils, and other objects.</p>
-                                </div>
-                            </div>
-                            <img class="img-fluid" src="assets/img/portfolio-4.jpg" alt="..." />
-                        </a>
-                    </div>
-                    <div class="col-lg-6">
-                        <a class="portfolio-item" href="#!">
-                            <div class="caption">
-                                <div class="caption-content">
-                                    <div class="h2">Ice Cream</div>
-                                    <p class="mb-0">A dark blue background with a colored pencil, a clip, and a tiny ice cream cone!</p>
-                                </div>
-                            </div>
-                            <img class="img-fluid" src="assets/img/portfolio-2.jpg" alt="..." />
-                        </a>
-                    </div>
-                    <div class="col-lg-6">
-                        <a class="portfolio-item" href="#!">
-                            <div class="caption">
-                                <div class="caption-content">
-                                    <div class="h2">Strawberries</div>
-                                    <p class="mb-0">Strawberries are such a tasty snack, especially with a little sugar on top!</p>
-                                </div>
-                            </div>
-                            <img class="img-fluid" src="assets/img/portfolio-3.jpg" alt="..." />
-                        </a>
-                    </div>
-                    <div class="col-lg-6">
-                        <a class="portfolio-item" href="#!">
-                            <div class="caption">
-                                <div class="caption-content">
-                                    <div class="h2">Workspace</div>
-                                    <p class="mb-0">A yellow workspace with some scissors, pencils, and other objects.</p>
+                                    <div class="h2">jeongbaul_db</div>
+                                    <p class="mb-0">본격적인 프로젝트의 시작을 정리해둔 데이터베이스</p>
                                 </div>
                             </div>
                             <img class="img-fluid" src="assets/img/portfolio-4.jpg" alt="..." />
