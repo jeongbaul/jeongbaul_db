@@ -29,6 +29,7 @@
                 <li class="sidebar-nav-item"><a href="#portfolio">Portfolio</a></li>
                 <li class="sidebar-nav-item"><a href="/Login/Login.php">Login</a></li>
                 <li class="sidebar-nav-item"><a href="/admin/skill/skill.php">admin</a></li>
+                <li class="sidebar-nav-item"><a href="/admin/projects/projects.php">projects</a></li>
             </ul>
         </nav>
         <!-- Header-->
@@ -44,13 +45,13 @@
             <div class="container px-4 px-lg-5 text-center">
                 <div class="row gx-4 gx-lg-5 justify-content-center">
                     <div class="col-lg-10">
-                        <h2>Stylish Portfolio is the perfect theme for your next project!</h2>
+                        <h2>제 portfolio를 보러 와주셔서 감사합니다</h2>
                         <p class="lead mb-5">
-                            This theme features a flexible, UX friendly sidebar menu and stock photos from our friends at
-                            <a href="https://unsplash.com/">Unsplash</a>
+                            부천북고 3학년9반 22번 정바울
+                            <a href="https://unsplash.com/">히히/a>
                             !
                         </p>
-                        <a class="btn btn-dark btn-xl" href="#services">portfolio My psojects</a>
+                        <a class="btn btn-dark btn-xl" href="#services">portfolio My skill</a>
                     </div>
                 </div>
             </div>
@@ -79,7 +80,7 @@
                         <h4><strong>html_study</strong></h4>
                         <p class="text-faded mb-0">웹 페이지 스타일을 배우면서 정리한 노트</p>
                     </div>
-                    -<div class="col-lg-3 col-md-6 mb-5 mb-lg-0">
+                    <div class="col-lg-3 col-md-6 mb-5 mb-lg-0">
                         <span class="service-icon rounded-circle mx-auto mb-3"><i class="icon-screen-smartphone"></i></span>
                         <h4><strong>jeongbaul_db</strong></h4>
                         <p class="text-faded mb-0">본격적인 프로젝트의 시작을 정리해둔 데이터베이스</p>
@@ -92,8 +93,8 @@
             <div class="container px-4 px-lg-5 text-center">
                 <h2 class="mx-auto mb-5">
                     Welcome to
-                    <em>your</em>
-                    next website!
+                    <em>My</em>
+                    Git Hub!
                 </h2>
                 <a class="btn btn-primary btn-xl" href="https://github.com/jeongbaul/freeboard">Download Now!</a>
             </div>
