@@ -5,6 +5,7 @@ $id = $_GET['id'] ?? null;
 $title = '';
 $description = '';
 $img = '';
+$link = '';
 
 if ($id) {
     // 수정용 데이터 조회
@@ -14,6 +15,7 @@ if ($id) {
         $title = $row['title'];
         $description = $row['description'];
         $img = $row['img'];
+        $link = $row['link'] ?? '';
     } else {
         die("프로젝트를 찾을 수 없습니다.");
     }
@@ -53,6 +55,9 @@ if ($id) {
     <label for="description">Description</label>
     <textarea name="description" id="description" rows="5" required><?= htmlspecialchars($description) ?></textarea>
     
+    <label for="link">프로젝트 링크</label>
+    <input type="text" name="link" id="link" value="<?= htmlspecialchars($link) ?>" placeholder="https://example.com">
+
     <label for="img">이미지 <?= $id && $img ? '(현재 이미지 표시)' : '' ?></label>
     <input type="file" name="img" id="img" accept="image/*">
     <?php if ($id && $img): ?>

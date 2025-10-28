@@ -1,3 +1,46 @@
+<?php
+include_once $_SERVER['DOCUMENT_ROOT']."/lib/db.php";
+session_start();
+
+$error = "";
+
+// 폼 전송 시 처리
+if ($_SERVER["REQUEST_METHOD"] === "POST") {
+    $id = trim($_POST['username'] ?? '');
+    $pw = trim($_POST['password'] ?? '');
+
+    if ($id === "" || $pw === "") {
+        $error = "아이디와 비밀번호를 모두 입력해주세요.";
+    } else {
+        // 사용자 확인
+        $stmt = mysqli_prepare($conn, "SELECT pw, name, level FROM users WHERE id = ?");
+        mysqli_stmt_bind_param($stmt, "s", $id);
+        mysqli_stmt_execute($stmt);
+        mysqli_stmt_store_result($stmt);
+
+        if (mysqli_stmt_num_rows($stmt) === 1) {
+            mysqli_stmt_bind_result($stmt, $hashed_pw, $name, $level);
+            mysqli_stmt_fetch($stmt);
+
+            if (password_verify($pw, $hashed_pw)) {
+                // 로그인 성공
+                $_SESSION['user_id'] = $id;
+                $_SESSION['user_name'] = $name;
+                $_SESSION['user_level'] = $level;
+
+                echo "<script>alert('로그인 성공!'); location.href='/index.php';</script>";
+                exit;
+            } else {
+                $error = "비밀번호가 일치하지 않습니다.";
+            }
+        } else {
+            $error = "존재하지 않는 아이디입니다.";
+        }
+        mysqli_stmt_close($stmt);
+    }
+}
+?>
+
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -55,7 +98,7 @@
   .error {
     color:red;
     font-size:14px;
-    display:none;
+    margin-bottom:10px;
   }
 </style>
 </head>
@@ -63,38 +106,25 @@
 
 <div class="login-box">
   <h2>로그인</h2>
-  <div id="errorMessage" class="error">아이디와 비밀번호를 입력해주세요.</div>
-  <form id="loginForm" onsubmit="return validateForm()">
-    <input type="text" id="username" placeholder="아이디">
-    <input type="password" id="password" placeholder="비밀번호">
+
+  <?php if ($error): ?>
+    <div class="error"><?= htmlspecialchars($error) ?></div>
+  <?php endif; ?>
+
+  <form method="POST" action="">
+    <input type="text" name="username" placeholder="아이디" required>
+    <input type="password" name="password" placeholder="비밀번호" required>
     <button type="submit">로그인</button>
   </form>
+
   <button class="back-btn" onclick="goBack()">← 뒤로가기</button>
 </div>
 
 <script>
-  function validateForm() {
-    const id = document.getElementById("username").value;
-    const pw = document.getElementById("password").value;
-    const err = document.getElementById("errorMessage");
-
-    if (id === "" || pw === "") {
-      err.style.display = "block";
-      return false;
-    } else {
-      err.style.display = "none";
-      alert("로그인 시도!");
-      return false;
-    }
-  }
-
-  function goBack() {
-    if (document.referrer) {
-      history.back();
-    } else {
-      window.location.href = "http://localhost";
-    }
-  }
+function goBack() {
+  if (document.referrer) history.back();
+  else window.location.href = "http://localhost";
+}
 </script>
 
 </body>
